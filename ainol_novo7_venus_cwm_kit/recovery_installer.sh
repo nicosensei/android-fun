@@ -21,7 +21,7 @@ ALLOW_CLEAR=1
 SCRIPT_HOME="`pwd`"
 
 # Path to recovery image"
-CWM_IMAGE=~/git/android-fun/ainol_novo7_venus_cwm_kit/recovery.img
+CWM_IMAGE=./recovery.img
 CMW_IMAGE="`cd "$CWM_IMAGE";pwd`/`basename $CWM_IMAGE`"
 
 # Test switch (allows blank runs of the script for testing purposes).

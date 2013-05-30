@@ -31,12 +31,28 @@ Batch file by Cloud Deter - based from cxz's commands.
 
 Linux batch by Nikojiro - based on Cloud Deter's DOS batch.
 
-Linux instructions
--------
+--------------------------------------------------------------------------------
+-- Linux instructions
+--------------------------------------------------------------------------------
 
 First you need to have root access or be a sudoer (e.g. be able to use the 'sudo' command).
+You'll also need to install ADB (see http://developer.android.com/sdk/index.html)
 
-1. Plug your tablet on your PC's via USB
-2. Open a terminal and type 'lsusb', you should see the following output, or very similar:
+1.  Plug your tablet on your PC's via USB
+2.  Open a terminal and type 'lsusb', you should see the following output, or very similar:
+3.  As root, open the file /etc/udev/rules.d/51-android.rules with a text editor, create it 
+    if it doesn't exist
+4.  Add the following line
+    SUBSYSTEMS==”usb”, ATTRS{idVendor}==”0x10d6", MODE=”0666″
+5.  Save the file
+5.  Note that the hex should match the one from 'lsusb' ouput, in this case '10d6'
+6.  Open the file ~/.android/adb_usb.ini (no need to be root as it's in your home directory)
+7.  Even though Google tells you not to edit this file, add the line "0x10d6" (or the hex you got previously)
+8.  Save the file
+9.  Navigate to where you extracted this kit
+10. Open recovery_installer.sh in a text editor
+11. Set the ADB_PATH variable to where the adb binary is located, in my case '~/dev/adt-bundle-x86/sdk/platform-tools'
+12. Run ./recovery_installer.sh as root (log as root or use sudo)
+
 
 
