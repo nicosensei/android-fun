@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Ainol Novo 7 Venus Clockworkmod Recovery installation scrip by Nikojiro 
+# Ainol Novo 7 Venus Clockworkmod Recovery installation scrip by Nikojiro
 #
 # Based on Cloud Deter's CWM kit
 # Cf. http://forums.zzkko.com/topic/2651-guide-clockworkmod-cwm-custom-recovery-guide-and-installation/page-10
@@ -16,15 +16,15 @@
 ADB_PATH=~/dev/adt-bundle-x86/sdk/platform-tools
 
 # If you don't like the screen being cleared by the script set this to 0
-ALLOW_CLEAR=0
+ALLOW_CLEAR=1
 
 SCRIPT_HOME="`pwd`"
 
 # Path to recovery image"
 CWM_IMAGE=recovery.img
 
-# Test switch (allows blank runs of the script for testing purposes). 
-# Set to 0 to actually execute ADB commands, otherwise they are simply 
+# Test switch (allows blank runs of the script for testing purposes).
+# Set to 0 to actually execute ADB commands, otherwise they are simply
 # logged.
 TEST_MODE=1
 
@@ -107,6 +107,8 @@ check() {
 }
 
 write() {
+	clearAndDisplayHeader;
+	
 	if [ ! -f $CWM_IMAGE ]; then
 		echo "CWM image $CWM_IMAGE not found!"
 		echo "Cannot continue!"
@@ -129,6 +131,7 @@ write() {
 	adbCall "kill-server"
 	echo "Finished!"
 	pause 'Press [Enter] key to move on.';
+	finish;
 }
 
 finish() {
@@ -151,20 +154,18 @@ echo "Script executes in $SCRIPT_HOME"
 echo "Script uses adb binary located in $ADB_PATH"
 echo	
 echo "This script will install an early build of ClockworkMod Recovery "
-echo "to your device. It was designed SPECIFICALLY for the Ainol Novo 7"
-echo "Venus tablet, but shoudl work on other devices for whch the CWM "
-echo "recovery image is deemed compatible (ATM7029 devices: Novo 7 "
-echo "Venus, Hero 2, Find, Dream). Do not attempt to use it on any"
-echo "other device. I take no responsiblity for any damage or data "
-echo "loss caused."
+echo "to your device. While the recovery image is compatible with various"
+echo "ATM7029 devices (Novo 7 Venus, Hero 2, Find, Dream), this script"
+echo "has only been tested on the Ainol Novo 7 Venus tablet."
+echo "I take no responsiblity for any damage or data loss caused."
 echo
 echo "          READ THE README.TXT BEFORE USING THIS SCRIPT"
 echo
 echo "Have you?"
 echo
 echo "- Installed adb linux platform tools?"
-echo "- Configured udev for your device (may not be mandatory)"
-echo "- Enabled USB Debugging?"
+echo "- Configured udev for your device (not mandatory if you have root access)"
+echo "- Enabled USB Debugging on your tablet?"
 echo "- Connected your tablet via USB?"
 echo "- Removed any external SD card?"
 echo
