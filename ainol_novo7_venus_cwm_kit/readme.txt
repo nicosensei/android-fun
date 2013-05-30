@@ -40,7 +40,7 @@ You'll also need to install ADB (see http://developer.android.com/sdk/index.html
 
 1.  Plug your tablet on your PC's via USB
 
-2.  Be sure not to have other USB periperals than the tab connected, and open a terminal.
+2.  Be sure not to have other USB peripherals than the tab connected, and open a terminal.
     Type 'lsusb', you should see an outputsimilar to this:
 
       ngiraud@Rabanastre:~$ lsusb 
