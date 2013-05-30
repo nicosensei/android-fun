@@ -21,12 +21,13 @@ ALLOW_CLEAR=1
 SCRIPT_HOME="`pwd`"
 
 # Path to recovery image"
-CWM_IMAGE=recovery.img
+CWM_IMAGE=~/git/android-fun/ainol_novo7_venus_cwm_kit/recovery.img
+CMW_IMAGE="`cd "$CWM_IMAGE";pwd`/`basename $CWM_IMAGE`"
 
 # Test switch (allows blank runs of the script for testing purposes).
 # Set to 0 to actually execute ADB commands, otherwise they are simply
 # logged.
-TEST_MODE=1
+TEST_MODE=0
 
 ########################################################################
 # Function definitions
@@ -56,95 +57,6 @@ clearAndDisplayHeader() {
 	echo
 }
 
-menu() {
-	clearAndDisplayHeader;
-
-	echo "Read all instructions carefully! Refer to readme.txt!"
-	echo
-	echo "Select from the following options:"
-	echo
-	echo "1 - Check device connectivity"
-	echo "2 - Write CWM recovery image to device"
-	echo "Q - Quit"
-	echo
-	echo "Choose an option :"
-
-	read CHOICE
-	case "$CHOICE" in
-		1) 
-			check;
-			;;
-		2)
-			write;
-			;;
-		Q)
-			finish;
-			;;
-		q)
-			finish;
-			;;
-		*)
-			echo "Choose an option (1-2) or press Q:"
-			;;
-	esac
-	menu;
-}
-
-check() {
-	if [ "$ALLOW_CLEAR" -gt "0" ]; then clear; fi
-	echo "Running connection test..."
-	echo
-	adbCall 'devices'
-	echo
-	echo
-	echo
-	echo "Do you see a device listed above? (EG. 20080411   device)"
-	echo "If not, the script will not work. Quit now and refer to readme.txt."
-	echo "If yes, you're good to go."
-	echo
-	pause 'Press [Enter] key to move on.';
-	menu;
-}
-
-write() {
-	clearAndDisplayHeader;
-	
-	if [ ! -f $CWM_IMAGE ]; then
-		echo "CWM image $CWM_IMAGE not found!"
-		echo "Cannot continue!"
-		pause 'Press [Enter] key to move on.';
-		menu;
-	fi
-	echo "Venus CWM recovery install script by Cloud Deter."
-	echo "Script based off cxz's commands."
-	echo "Recovery by bnmguy."
-	echo "Please wait while ADB starts and gains root..."
-	adbCall "root"
-	adbCall "wait-for-device"
-	echo "Making recovery directory..."
-	adbCall "shell busybox mkdir /mnt/obb/rec"
-	echo "Mounting recovery partition..."
-	adbCall "shell busybox mount -t vfat /dev/block/acta /mnt/obb/rec"
-	echo "Copying CWM to the recovery partition..."
-	adbCall "push $CWM_IMAGE /mnt/obb/rec"
-	echo "Stopping ADB..."
-	adbCall "kill-server"
-	echo "Finished!"
-	pause 'Press [Enter] key to move on.';
-	finish;
-}
-
-finish() {
-	clearAndDisplayHeader;
-	echo "To access CWM recovery 'Power off' your Venus."
-	echo "Then press and hold the VOLUME MINUS (-) key and the power button key."
-	echo
-	echo "Huge thanks to bmourit, Cloud Deter and cxz @ ZZKKO forums."
-	echo
-	echo "Have fun!"
-	exit 1
-}
-
 ########################################################################
 # Script execution start
 ########################################################################
@@ -152,6 +64,7 @@ finish() {
 clearAndDisplayHeader;
 echo "Script executes in $SCRIPT_HOME"
 echo "Script uses adb binary located in $ADB_PATH"
+echo "Selected recovery image is $CWM_IMAGE"
 echo	
 echo "This script will install an early build of ClockworkMod Recovery "
 echo "to your device. While the recovery image is compatible with various"
@@ -164,11 +77,62 @@ echo
 echo "Have you?"
 echo
 echo "- Installed adb linux platform tools?"
-echo "- Configured udev for your device (not mandatory if you have root access)"
+echo "- Configured udev for your device (cf. readme.txt)"
+echo "- Configured adb for your device (cf. readme.txt)"
 echo "- Enabled USB Debugging on your tablet?"
 echo "- Connected your tablet via USB?"
 echo "- Removed any external SD card?"
 echo
 echo "Yes? Good."
 pause 'Press [Enter] key to move on.';
-menu;
+
+# Run a connection test first
+clearAndDisplayHeader;
+echo "Running connection test..."
+echo
+adbCall 'devices'
+echo
+echo
+echo
+echo "Do you see a device listed above? (e.g. 0123456789ABCDEF  device)"
+echo "If not, the script will not work. Quit now and refer to readme.txt."
+echo "If yes, you're good to go."
+echo
+pause 'Press [Enter] key to move on, otherwise press control+C to abort.';
+
+# Now on to the real thing!
+clearAndDisplayHeader;
+
+if [ ! -f $CWM_IMAGE ]; then
+    echo "CWM image $CWM_IMAGE not found!"
+    echo "Cannot continue!"
+    pause 'Press [Enter] key to move on.';
+    exit 0;
+fi
+echo "Venus CWM recovery install script by Cloud Deter."
+echo "Script based off cxz's commands."
+echo "Recovery by bnmguy."
+echo "Please wait while ADB starts and gains root..."
+adbCall "root"
+adbCall "wait-for-device"
+echo "Making recovery directory..."
+adbCall "shell busybox mkdir /mnt/obb/rec"
+echo "Mounting recovery partition..."
+adbCall "shell busybox mount -t vfat /dev/block/acta /mnt/obb/rec"
+echo "Copying CWM to the recovery partition..."
+adbCall "push $CWM_IMAGE /mnt/obb/rec"
+echo "Stopping ADB..."
+adbCall "kill-server"
+echo "Finished!"
+pause 'Press [Enter] key to move on.';
+
+# Final words...
+clearAndDisplayHeader;
+echo "To access CWM recovery 'Power off' your Venus."
+echo "Then press and hold the VOLUME MINUS (-) key and the power button key."
+echo
+echo "Huge thanks to bmourit, Cloud Deter and cxz @ ZZKKO forums."
+echo
+echo "Have fun!"
+exit 1
+

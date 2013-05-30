@@ -30,3 +30,13 @@ ClockworkMod Recovery early build developed by bmnguy.
 Batch file by Cloud Deter - based from cxz's commands.
 
 Linux batch by Nikojiro - based on Cloud Deter's DOS batch.
+
+Linux instructions
+-------
+
+First you need to have root access or be a sudoer (e.g. be able to use the 'sudo' command).
+
+1. Plug your tablet on your PC's via USB
+2. Open a terminal and type 'lsusb', you should see the following output, or very similar:
+
+
