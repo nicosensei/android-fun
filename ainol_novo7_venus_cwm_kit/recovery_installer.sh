@@ -6,6 +6,7 @@
 # Cf. http://forums.zzkko.com/topic/2651-guide-clockworkmod-cwm-custom-recovery-guide-and-installation/page-10
 #
 # ClockworkMod Recovery early build developed by bmnguy.
+# Cf. http://www.slatedroid.com/topic/71985-cwm-recovery-for-hero-ii/
 #
 
 ########################################################################
