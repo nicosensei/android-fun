@@ -22,7 +22,7 @@ ALLOW_CLEAR=1
 SCRIPT_HOME="`pwd`"
 
 # Path to recovery image"
-CWM_IMAGE=./recovery.img
+CWM_IMAGE=./image/recovery_bnmguy.img
 CMW_IMAGE="`cd "$CWM_IMAGE";pwd`/`basename $CWM_IMAGE`"
 
 # Test switch (allows blank runs of the script for testing purposes).
