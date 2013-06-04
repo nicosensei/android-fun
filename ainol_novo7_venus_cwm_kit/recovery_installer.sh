@@ -22,7 +22,7 @@ ALLOW_CLEAR=1
 SCRIPT_HOME="`pwd`"
 
 # Path to recovery image"
-CWM_IMAGE=./image/recovery_bnmguy.img
+CWM_IMAGE=./recovery_bnmguy.img
 CMW_IMAGE="`cd "$CWM_IMAGE";pwd`/`basename $CWM_IMAGE`"
 
 # Test switch (allows blank runs of the script for testing purposes).
@@ -66,7 +66,7 @@ clearAndDisplayHeader;
 echo "Script executes in $SCRIPT_HOME"
 echo "Script uses adb binary located in $ADB_PATH"
 echo "Selected recovery image is $CWM_IMAGE"
-echo	
+echo
 echo "This script will install an early build of ClockworkMod Recovery "
 echo "to your device. While the recovery image is compatible with various"
 echo "ATM7029 devices (Novo 7 Venus, Hero 2, Find, Dream), this script"
