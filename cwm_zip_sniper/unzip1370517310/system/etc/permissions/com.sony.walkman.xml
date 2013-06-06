@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2011 Sony Corporation -->
-<permissions>
-    <feature name="com.sony.walkman" />
-    <library name="com.sony.walkman"
-            file="/system/framework/com.sony.walkman.jar"/>
-</permissions>
