@@ -15,7 +15,7 @@ SCRIPT_HOME="`pwd`"
 # Test switch (allows blank runs of the script for testing purposes).
 # Set to 0 to actually execute ADB commands, otherwise they are simply
 # logged.
-TEST_MODE=1
+TEST_MODE=0
 
 # If you don't like the screen being cleared by the script set this to 0
 ALLOW_CLEAR=1
@@ -64,7 +64,7 @@ if [ -d $TMP_DIR/META-INF ]; then rm -rf $TMP_DIR/META-INF; fi
 if [ -d $TMP_DIR/meta-inf ]; then rm -rf $TMP_DIR/meta-inf; fi
 
 FILE_LIST="$SCRIPT_HOME/files$TS.list"
-find $TMP_REL_DIR * > $FILE_LIST
+find $TMP_REL_DIR -name "*" > $FILE_LIST
 
 echo
 echo "Script executes in $SCRIPT_HOME"
@@ -104,6 +104,7 @@ echo "If yes, you're good to go."
 echo
 pause 'Press [Enter] key to move on, otherwise press control+C to abort.';
 
+adbCall "kill-server"
 adbCall "root"
 adbCall "wait-for-device"
 
