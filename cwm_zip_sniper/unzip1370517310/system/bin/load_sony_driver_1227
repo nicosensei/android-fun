@@ -1,0 +1,18 @@
+#!/system/bin/sh
+insmod /system/lib/modules/icx_nvp_emmc.ko
+/system/bin/nvpnode
+chown root.icx_nvp /dev/icx_nvp/*
+chown system /dev/icx_nvp/012 /dev/icx_nvp/013
+chown system /dev/icx_nvp/062 /dev/icx_nvp/063
+chown system /dev/icx_nvp/064 /dev/icx_nvp/065
+chown system /dev/icx_nvp/066 /dev/icx_nvp/067
+chown bluetooth /dev/icx_nvp/035 /dev/icx_nvp/086
+insmod /system/lib/modules/max17042_battery.ko
+insmod /system/lib/modules/cs47l01_dnc_core.ko
+VOLIMIT=`getprop ro.sony.volume_limit`0
+/system/bin/dacdat auto 1227 $VOLIMIT
+DEEMPHASIS=`getprop ro.sony.fm_deemphasis`0
+insmod /system/lib/modules/radio-si4708icx.ko deemphasis=$DEEMPHASIS
+insmod /system/lib/modules/icx_diag.ko
+/system/bin/calc_capacity
+/system/bin/bundle_btdevice

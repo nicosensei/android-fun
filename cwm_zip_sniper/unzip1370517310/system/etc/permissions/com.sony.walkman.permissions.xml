@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2012 Sony Corporation -->
+<permissions>
+  <permission name="com.sony.walkman.permission.ACCESS_MEDIA">
+   <group gid="wmmedia" />
+  </permission>
+  <permission name="com.sony.walkman.permission.ACCESS_DRM2">
+   <group gid="icx_mg" />
+   <group gid="icx_nvp" />
+  </permission>
+  <permission name="com.sony.walkman.permission.ACCESS_FM">
+   <group gid="fm" />
+  </permission>
+</permissions>

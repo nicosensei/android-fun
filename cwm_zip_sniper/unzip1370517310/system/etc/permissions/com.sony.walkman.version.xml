@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2012 Sony Corporation -->
+<permissions>
+    <feature name="com.sony.walkman.version.d100" />
+    <feature name="com.sony.walkman.version.v0200e100" />
+</permissions>
