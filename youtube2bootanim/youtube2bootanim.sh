@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Usage youtube2bootanim.sh <YouTube video ID> <frames per second>
+# For example './youtube2bootanim.sh VEXKX5Iw_WY 5' will get you a nice NyanCat 
+# boot animation in 480p running at 5 FPS.
 #
 # The script is intended to be ran on Debian-based Linux distros. 
 # It's been developed and tested under Linux Mint 15
