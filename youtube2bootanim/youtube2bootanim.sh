@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage convert.sh <YouTube video ID> <frames per second>
+# Usage youtube2bootanim.sh <YouTube video ID> <frames per second>
 #
 # The script is intended to be ran on Debian-based Linux distros. 
 # It's been developed and tested under Linux Mint 15
