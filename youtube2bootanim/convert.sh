@@ -5,6 +5,12 @@
 # The script is intended to be ran on Debian-based Linux distros. 
 # It's been developed and tested under Linux Mint 15
 # This script needs the following packages installed: ffmpeg and youtube-dl
+#
+# The base ffmpeg command comes from this utility: http://forum.xda-developers.com/showthread.php?t=1719104
+#
+# TODO ffmpeg is deprecated, should move to using avconv
+#
+# Nikojiro @ XDA-developers 2013
 
 checkInstalled() {
     INSTALLED="`dpkg -L $1 | wc -l`"
